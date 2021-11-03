@@ -7,15 +7,27 @@ use serde::{Deserialize, Serialize};
 pub type StdError = Box<dyn std::error::Error + 'static>;
 
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
-pub struct Config {
+pub struct App {
     /// Bind address host [default: 127.0.0.1]
     pub hostname: String,
     /// Port for service to listen on [default: 16353]
     pub port: u16,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+pub struct GitHub {
     /// Name of git repository to watch [default: main]
     pub branch: String,
     /// GitHub webhooks API token [default: ""]
-    pub github_token: String,
+    pub api_key: String,
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize, PartialEq)]
+pub struct Config {
+    pub app: App,
+    pub github: GitHub,
+    /// Directory containing loadable scripts
+    pub scripts: String,
 }
 
 impl Config {
@@ -27,9 +39,9 @@ impl Config {
         Self::from_env(environment)
     }
 
-    pub fn from_env(value: Environment) -> Result<Self, StdError> {
+    pub fn from_env(value: Environment) -> Result<Config, StdError> {
         let filename = &*format!("config/{}.yml", value.as_str());
-        Self::parse_file(filename)
+        Config::parse_file(filename)
     }
 
     /// Populate config values based on the type of environment
@@ -37,17 +49,22 @@ impl Config {
         let mut file = File::open(filename)?;
         let mut buffer = String::new();
         file.read_to_string(&mut buffer)?;
-        Ok(serde_yaml::from_str(&buffer)?)
+        Ok(serde_yaml::from_str::<Config>(&buffer)?)
     }
 }
 
 impl Default for Config {
     fn default() -> Self {
         Self {
-            hostname: "127.0.0.1".to_string(),
-            port: 15550,
-            branch: "main".to_string(),
-            github_token: "".to_string(),
+            scripts: "scripts".to_string(),
+            app: App {
+                hostname: "127.0.0.1".to_string(),
+                port: 15550,
+            },
+            github: GitHub {
+                branch: "main".to_string(),
+                api_key: "".to_string(),
+            },
         }
     }
 }
