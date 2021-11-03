@@ -1,0 +1,21 @@
+[package]
+name = "warden"
+version = "0.0.1"
+edition = "2021"
+description = "Dynamic task runner service using webhook events"
+default-run = "warden"
+
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "warden"
+path = "src/main.rs"
+
+[dependencies]
+#rust-crypto = "0.2"
+serde = { version = "1", features = ["derive"] }
+serde_yaml = "0.8"
+
+[profile.release]
+lto = true

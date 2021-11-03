@@ -1,0 +1,9 @@
+scripts_path: "scripts"
+
+app:
+  hostname: "127.0.0.1"
+  port: 15550
+
+github:
+  branch: "main"
+  api_key: "+11st4woEUfaic4vsVnXcVP7da3GbILKq0B995RGy5Gb4R7Am6tzLnibCOlnreqw1NEV"
