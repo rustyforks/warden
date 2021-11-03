@@ -1,9 +1,12 @@
+# Warden application server
 app:
   hostname: "127.0.0.1"
   port: 4567
 
+# GitHub service
 github:
   branch: "main"
   api_key: "+11st4woEUfaic4vsVnXcVP7da3GbILKq0B995RGy5Gb4R7Am6tzLnibCOlnreqw1NEV"
 
+# Directory to load executable scripts from
 scripts: "scripts"

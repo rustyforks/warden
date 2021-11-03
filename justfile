@@ -1,3 +1,6 @@
-# Runs project with Cargo in 'watch' mode
-w-run:
-    cargo watch -x run
+# Run all code quality checks
+check-all:
+    cargo fmt --all -- --check
+    cargo clippy -- -D warnings
+    cargo test
+    cargo audit

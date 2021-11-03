@@ -1,5 +1,7 @@
-//! Warden is a small service that acts as a utility/assistant for CI/CD
-//! workflows by listening to and responding to Webhooks. Warden loads
-//! scripts for you and executes them as tasks either sequentially or in
-//! parallel.
+//! Warden is a configurable service that helps streamline your continuous
+//! integration and deployment workflows by listening to webhook events.
+//!
+//! Warden's built-in runtime automatically loads your executable scripts and
+//! is capable of running them sequentially or in parallel.
 pub mod config;
+pub mod environment;
