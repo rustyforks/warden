@@ -13,9 +13,8 @@ name = "warden"
 path = "src/main.rs"
 
 [dependencies]
-#rust-crypto = "0.2"
+axum = "0.3"
 serde = { version = "1", features = ["derive"] }
 serde_yaml = "0.8"
-
-[profile.release]
-lto = true
+tokio = { version = "1", features = ["full"] }
+tower = { version = "0.4", features = ["full"] }

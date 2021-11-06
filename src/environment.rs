@@ -1,11 +1,11 @@
 //! Environment
 
 /// `Environment` contains all possible runtime environment types.
-/// The current value is derived from the `APP_ENVIRONMENT` variable.
+/// The current value is derived from the `APP_ENV` variable.
 ///
-/// NOTE: `APP_ENVIRONMENT` must be either set to a valid value or left unset.
+/// NOTE: `APP_ENV` must be either set to a valid value or left unset.
 ///   If the parsed value is invalid, the application will not start.
-#[derive(Clone, Copy, Debug)]
+#[derive(Debug)]
 pub enum Environment {
     Default,
     Staging,

@@ -1,5 +1,5 @@
 # Run all code quality checks
-check-all:
+check:
     cargo fmt --all -- --check
     cargo clippy -- -D warnings
     cargo test

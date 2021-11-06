@@ -5,3 +5,6 @@
 //! is capable of running them sequentially or in parallel.
 pub mod config;
 pub mod environment;
+pub mod state;
+
+pub type BoxedError = Box<dyn std::error::Error + Send + Sync + 'static>;
